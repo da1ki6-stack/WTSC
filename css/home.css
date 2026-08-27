@@ -1,0 +1,764 @@
+/* ============================================================
+   WTSC — home.css  (Editorial Magazine Layout)
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:     #f7f4f0;
+  --bg2:    #eee9e2;
+  --ink:    #1a1816;
+  --ink2:   #6b5f55;
+  --gold:   #c9a96e;
+  --white:  #ffffff;
+  --border: rgba(26,24,22,.1);
+  --radius: 4px;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  transition: background .35s, box-shadow .35s;
+}
+.site-header.scrolled {
+  background: rgba(247,244,240,.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.header-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: .25em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.site-nav { display: flex; gap: 40px; }
+.site-nav a {
+  font-size: .8rem;
+  letter-spacing: .14em;
+  color: var(--ink2);
+  text-decoration: none;
+  transition: color .2s;
+}
+.site-nav a:hover { color: var(--ink); }
+
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.menu-btn span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform .3s, opacity .3s;
+}
+.menu-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.menu-btn.open span:nth-child(2) { opacity: 0; }
+.menu-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── HERO SPLIT ─────────────────────────────────── */
+.hero-split {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 64px;
+}
+
+.hs-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 56px 80px 52px;
+  max-width: 640px;
+}
+
+.hs-eyebrow {
+  font-size: .72rem;
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+}
+
+.hs-headline {
+  font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', 'Yu Mincho', '游明朝', Georgia, serif;
+  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 36px;
+}
+.hs-headline .indent { padding-left: .6em; }
+.hs-headline em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.hs-body {
+  font-size: .9rem;
+  color: var(--ink2);
+  line-height: 2;
+  margin-bottom: 48px;
+}
+
+.hs-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 32px;
+  background: var(--ink);
+  color: var(--white);
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: background .25s;
+  align-self: flex-start;
+}
+.hs-cta:hover { background: var(--gold); }
+.hs-cta svg { width: 16px; height: 16px; transition: transform .25s; }
+.hs-cta:hover svg { transform: translateX(3px); }
+
+/* Hero mosaic */
+.hs-mosaic {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  background: var(--bg2);
+}
+
+.mosaic-img {
+  overflow: hidden;
+}
+.mosaic-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .7s ease;
+}
+.mosaic-img:hover img { transform: scale(1.05); }
+
+.mosaic-a { grid-column: 1; grid-row: 1; }
+.mosaic-b { grid-column: 2; grid-row: 1; }
+.mosaic-c { grid-column: 1; grid-row: 2; }
+.mosaic-d { grid-column: 2; grid-row: 2; }
+
+.mosaic-badge {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border-radius: 100px;
+  padding: 10px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.14);
+  pointer-events: none;
+}
+.mb-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.mb-label {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  color: var(--ink2);
+  text-transform: uppercase;
+}
+
+/* ── MARQUEE ─────────────────────────────────────── */
+.marquee-wrap {
+  background: var(--ink);
+  overflow: hidden;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track span {
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  padding: 0 22px;
+  white-space: nowrap;
+}
+.marquee-track .sep {
+  color: var(--gold);
+  padding: 0;
+  letter-spacing: 0;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+/* ── BENTO SECTION ──────────────────────────────── */
+.bento-section {
+  padding: 100px 48px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.bento-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.bento-header h2 {
+  font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.section-label {
+  font-size: .68rem;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+/* ── BENTO GRID ─────────────────────────────────── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 360px 240px 300px;
+  gap: 14px;
+}
+
+.bcard { position: relative; overflow: hidden; cursor: pointer; }
+.bcard--large  { grid-column: 1 / 8;  grid-row: 1 / 3; }
+.bcard--medium { grid-column: 8 / 13; grid-row: 1 / 2; }
+.bcard--small  { grid-column: span 2; grid-row: 2 / 3; }
+.bcard--small:nth-of-type(3) { grid-column: 8 / 10; }
+.bcard--small:nth-of-type(4) { grid-column: 10 / 13; }
+.bcard--wide   { grid-column: 1 / 13; grid-row: 3 / 4; }
+
+/* Card image */
+.bcard-img {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.bcard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .75s cubic-bezier(.4,0,.2,1);
+}
+.bcard:hover .bcard-img img { transform: scale(1.07); }
+
+/* Overlay */
+.bcard-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(0,0,0,.85) 0%,
+    rgba(0,0,0,.3)  45%,
+    rgba(0,0,0,.05) 100%
+  );
+  transition: background .4s;
+}
+.bcard:hover .bcard-overlay {
+  background: linear-gradient(to top,
+    rgba(0,0,0,.93) 0%,
+    rgba(0,0,0,.55) 50%,
+    rgba(0,0,0,.15) 100%
+  );
+}
+
+/* Card body */
+.bcard-body {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 28px 28px 24px;
+  color: #fff;
+  z-index: 2;
+  transform: translateY(0);
+}
+
+.bcard-tag {
+  font-size: .64rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent, var(--gold));
+  border: 1px solid var(--accent, var(--gold));
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  opacity: .9;
+}
+
+.bcard-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 10px;
+}
+.logo-light { background: #fff; padding: 5px; }
+.logo-cream  { background: #f9f3e0; padding: 5px; }
+.logo-dark   { background: #000; padding: 3px; }
+
+.bcard-name {
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.bcard--large .bcard-name  { font-size: clamp(1.4rem, 2.2vw, 2rem); }
+.bcard--wide  .bcard-name  { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+
+/* Desc + chips — visible only on hover */
+.bcard-desc, .bcard-chips, .bcard-meta {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+.bcard:hover .bcard-desc,
+.bcard:hover .bcard-chips,
+.bcard:hover .bcard-meta {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.bcard:hover .bcard-chips { transition-delay: .05s; }
+.bcard:hover .bcard-meta  { transition-delay: .1s; }
+
+.bcard-desc {
+  font-size: .82rem;
+  color: rgba(255,255,255,.7);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.bcard-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin-bottom: 12px;
+}
+.bcard-chips li {
+  font-size: .65rem;
+  letter-spacing: .08em;
+  padding: 3px 10px;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.75);
+}
+
+.bcard-meta {
+  font-size: .72rem;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .05em;
+}
+
+/* Accent bottom line on hover */
+.bcard::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent, var(--gold));
+  transition: width .45s cubic-bezier(.4,0,.2,1);
+}
+.bcard:hover::after { width: 100%; }
+
+/* ── ABOUT STRIP ────────────────────────────────── */
+.about-strip {
+  background: var(--ink);
+  padding: 100px 48px;
+}
+.strip-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.strip-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  height: 420px;
+}
+.strip-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.strip-images img:first-child {
+  grid-column: 1;
+  height: 100%;
+}
+.strip-images img:last-child {
+  grid-column: 2;
+  align-self: end;
+  height: 70%;
+}
+
+.strip-text { color: #fff; }
+.strip-text .section-label { color: var(--gold); }
+.strip-text h2 {
+  font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  margin-top: 10px;
+}
+.strip-text > p {
+  font-size: .88rem;
+  color: rgba(255,255,255,.5);
+  line-height: 2;
+  margin-bottom: 44px;
+}
+
+.strip-stats {
+  display: flex;
+  gap: 44px;
+}
+.stat { display: flex; flex-direction: column; gap: 4px; }
+.stat-num {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: .63rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+
+/* ── CONTACT ────────────────────────────────────── */
+.contact-section {
+  padding: 100px 48px;
+  background: var(--bg2);
+}
+.contact-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-head h2 {
+  font-family: 'Hiragino Mincho ProN', 'ヒラギノ明朝 ProN', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  margin: 10px 0 16px;
+}
+.contact-head > p {
+  font-size: .86rem;
+  color: var(--ink2);
+  line-height: 1.8;
+}
+
+.contact-links { padding-top: 8px; }
+.c-link {
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--ink);
+  transition: padding-left .25s;
+  gap: 20px;
+}
+.c-link:first-child { border-top: 1px solid var(--border); }
+.c-link:hover { padding-left: 12px; }
+
+.c-link-label {
+  font-size: .65rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  width: 90px;
+  flex-shrink: 0;
+}
+.c-link-val {
+  font-size: .92rem;
+  color: var(--ink);
+  flex: 1;
+}
+.c-arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--ink2);
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+  flex-shrink: 0;
+}
+.c-link:hover .c-arrow { opacity: 1; transform: translateX(3px); }
+
+/* ── FOOTER ─────────────────────────────────────── */
+.site-footer {
+  background: var(--ink);
+  padding: 32px 48px;
+}
+.footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.f-logo {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: .25em;
+  color: var(--gold);
+}
+.f-nav { display: flex; gap: 28px; }
+.f-nav a {
+  font-size: .74rem;
+  color: rgba(255,255,255,.3);
+  text-decoration: none;
+  letter-spacing: .08em;
+  transition: color .2s;
+}
+.f-nav a:hover { color: var(--gold); }
+.f-copy {
+  font-size: .68rem;
+  color: rgba(255,255,255,.2);
+  letter-spacing: .06em;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+
+/* ---- Tablet (≤1024px) ---- */
+@media (max-width: 1024px) {
+  .header-inner { padding: 16px 24px; }
+
+  .bento-section { padding: 72px 24px; }
+  .bento-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 300px 240px 420px;
+    gap: 10px;
+  }
+  .bcard--large  { grid-column: 1 / 5; grid-row: 1 / 3; }
+  .bcard--medium { grid-column: 5 / 7; grid-row: 1 / 2; }
+  .bcard--small:nth-of-type(3) { grid-column: 5 / 6; grid-row: 2 / 3; }
+  .bcard--small:nth-of-type(4) { grid-column: 6 / 7; grid-row: 2 / 3; }
+  .bcard--wide   { grid-column: 1 / 7; grid-row: 3 / 4; }
+
+  .strip-inner { grid-template-columns: 1fr; gap: 48px; }
+  .strip-images { height: 300px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-strip, .contact-section { padding: 72px 24px; }
+  .site-footer { padding: 28px 24px; }
+}
+
+/* ---- Mobile (≤768px) — フラットカードレイアウトに切り替え ---- */
+@media (max-width: 768px) {
+  /* Header */
+  .site-nav { display: none; }
+  .site-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: rgba(247,244,240,.98);
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    z-index: 90;
+  }
+  .site-nav.open a { font-size: 1.2rem; letter-spacing: .12em; color: var(--ink); }
+  .menu-btn { display: flex; z-index: 101; }
+
+  /* Hero */
+  .hero-split {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: auto;
+    padding-top: 0;
+  }
+  .hs-text { padding: 88px 20px 44px; max-width: 100%; }
+  .hs-mosaic { height: 58vw; min-height: 240px; }
+  .mosaic-badge { padding: 8px 18px; }
+  .mb-num { font-size: 1.3rem; }
+
+  /* Bento header */
+  .bento-section { padding: 56px 16px; }
+  .bento-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 32px;
+  }
+
+  /* カードをフラットリストに変換 */
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  /* カード共通: オーバーレイなし、画像＋コンテンツの縦積み */
+  .bcard {
+    position: static;
+    overflow: visible;
+    display: grid;
+    grid-template-rows: 200px auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .bcard--large { grid-template-rows: 240px auto; }
+  .bcard--wide  { grid-template-rows: 180px auto; }
+  .bcard:last-child { border-bottom: none; }
+
+  /* 画像エリア */
+  .bcard-img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    overflow: hidden;
+  }
+  .bcard-img img { transition: transform .5s ease; }
+
+  /* オーバーレイ非表示 */
+  .bcard-overlay { display: none; }
+
+  /* カード本文: 白背景・通常テキスト */
+  .bcard-body {
+    position: static;
+    inset: auto;
+    padding: 20px 20px 24px;
+    background: var(--white);
+    color: var(--ink);
+    transform: none;
+  }
+
+  .bcard-tag { color: var(--accent, var(--gold)); border-color: var(--accent, var(--gold)); }
+  .bcard-logo { width: 44px; height: 44px; margin-bottom: 8px; }
+  .bcard-name {
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  /* モバイルではすべて表示 */
+  .bcard-desc, .bcard-chips, .bcard-meta {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    pointer-events: auto;
+  }
+  .bcard-desc { color: var(--ink2); font-size: .84rem; margin-bottom: 10px; }
+  .bcard-chips li { border-color: rgba(0,0,0,.15); color: var(--ink2); }
+  .bcard-meta { color: var(--ink2); font-size: .72rem; }
+
+  /* ホバーアンダーラインは非表示 */
+  .bcard::after { display: none; }
+
+  /* About */
+  .about-strip { padding: 60px 20px; }
+  .strip-inner { grid-template-columns: 1fr; gap: 40px; }
+  .strip-images {
+    display: block;
+    height: 220px;
+    grid-template-columns: unset;
+  }
+  .strip-images img:first-child { width: 100%; height: 100%; object-fit: cover; }
+  .strip-images img:last-child { display: none; }
+  .strip-stats { gap: 32px; }
+
+  /* Contact */
+  .contact-section { padding: 60px 20px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+  .c-link:hover { padding-left: 0; } /* hoverスライドをSPでは無効 */
+
+  /* Footer */
+  .site-footer { padding: 28px 20px; }
+  .footer-inner { flex-direction: column; text-align: center; gap: 14px; }
+  .f-nav { flex-wrap: wrap; justify-content: center; gap: 10px 16px; }
+}
+
+/* ---- 小型スマートフォン (≤480px) ---- */
+@media (max-width: 480px) {
+  .hs-eyebrow { font-size: .65rem; letter-spacing: .28em; }
+  .hs-headline { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+  .hs-body { font-size: .82rem; }
+  .hs-mosaic { height: 64vw; min-height: 220px; }
+  .hs-cta { padding: 12px 24px; font-size: .75rem; }
+
+  .bcard { grid-template-rows: 180px auto; }
+  .bcard--large { grid-template-rows: 220px auto; }
+  .bcard-body { padding: 16px 16px 20px; }
+  .bcard-name { font-size: 1rem; }
+
+  .strip-text h2 { font-size: 1.6rem; }
+  .strip-stats { gap: 20px; }
+  .stat-num { font-size: 1.7rem; }
+
+  .contact-head h2 { font-size: 1.75rem; }
+  .c-link-label { width: 72px; font-size: .6rem; }
+  .c-link-val { font-size: .84rem; }
+}
+
+/* ---- モーション軽減 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .bcard-img img, .mosaic-img img { transition: none; }
+  .bcard-desc, .bcard-chips, .bcard-meta { opacity: 1; transform: none; transition: none; }
+}
